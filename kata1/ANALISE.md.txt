@@ -1,0 +1,13 @@
+1. R= Escolhi o Arraylist, pois ele aloca espaço ilimitado em memória, permitindo um escalonamento maior do que os arrays convencionais em C
+que exigem a definição de uma limitação de tamanho.
+
+2. R= Eu divido em 4 listas menores e apenas adiciono ao final de cada uma o paciente de acordo com a prioridade. Não seria diferente com 1
+milhão de pacientes pois o processo seguiria da mesma forma apenas concatenando as 4 linhas e retornando-as. Porém, poderia lotar a memória
+de um computador antigo.
+
+3. R= Não. Levando em conta que para pacientes da mesma prioridade a fila funciona por ordem de chegada, se um idoso com prioridade média
+e um adolescente também, aquele que chegar primeiro assume a posição acima, pois ambas situações resultam na mesma prioridade. Um paciente
+de 15 anos na urgência MÉDIA iria para a urgência ALTA atrás de todos os outros pacientes de urgência ALTA na fila.
+
+4. R= Seria apenas mais uma linha lógica de código que executaria antes de enviar o paciente para sua devida fila. Há um espaço em destaque
+para todas as regras que executam antes do envio na identação do código.

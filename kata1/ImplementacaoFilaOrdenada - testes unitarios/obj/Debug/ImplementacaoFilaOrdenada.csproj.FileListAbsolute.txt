@@ -1,0 +1,7 @@
+E:\Mídias\codigos da prova unimed\ImplementacaoFilaOrdenada\bin\Debug\ImplementacaoFilaOrdenada.exe.config
+E:\Mídias\codigos da prova unimed\ImplementacaoFilaOrdenada\bin\Debug\ImplementacaoFilaOrdenada.exe
+E:\Mídias\codigos da prova unimed\ImplementacaoFilaOrdenada\bin\Debug\ImplementacaoFilaOrdenada.pdb
+E:\Mídias\codigos da prova unimed\ImplementacaoFilaOrdenada\obj\Debug\ImplementacaoFilaOrdenada.csproj.AssemblyReference.cache
+E:\Mídias\codigos da prova unimed\ImplementacaoFilaOrdenada\obj\Debug\ImplementacaoFilaOrdenada.csproj.CoreCompileInputs.cache
+E:\Mídias\codigos da prova unimed\ImplementacaoFilaOrdenada\obj\Debug\ImplementacaoFilaOrdenada.exe
+E:\Mídias\codigos da prova unimed\ImplementacaoFilaOrdenada\obj\Debug\ImplementacaoFilaOrdenada.pdb
