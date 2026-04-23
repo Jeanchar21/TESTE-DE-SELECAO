@@ -1,0 +1,114 @@
+.corpoContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.espacoTabela {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 30px;
+}
+
+.pesquisa {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    font-size: 18px;
+}
+
+.filtroSelect {
+    background-color: #09a0a0;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.tabelaTarefas {
+    width: 100%;
+    height: 100%;
+    background-color: #efefef;
+    box-shadow: 4px 5px 12px 1px #0000002d;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+
+.tituloTabela {
+    background-color: #1b9191;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    height: 50px;
+    border-radius: 10px 10px 0 0;
+}
+
+.tituloTabela td {
+    background-color: #1b9191;
+}
+
+.tabelaTarefas tbody tr td {
+    text-align: center;
+    padding: 10px;
+}
+
+.concluir:hover {
+    color: #09a0a0;
+}
+.tabelaTarefas tbody tr:hover {
+    background-color: #0000002d;
+}
+.tabelaTarefas tbody tr td a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.excluir:hover {
+    color: #a00909;
+}
+
+.defaultmessage {
+    outline: solid 5px #00000073;
+    width: 96%;
+    padding: 20px;
+    text-align: center;
+}
+
+.pageBtns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7px;
+    gap: 30px;
+    width: 100%;
+}
+
+.btnpage {
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #09a0a0;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.btnpage:hover {
+    background-color: #1cecec;
+    transition: .3s;
+}
+
+.btnpage:disabled {
+    background-color: #033b3b;
+    color: #fff;
+    cursor: not-allowed;
+}

@@ -1,0 +1,66 @@
+.containerRegister {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.formulario {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 4px 5px 10px 4px #00000023;
+}
+
+.elemento {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.elemento input {
+    width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.elemento textarea {
+    width: 90%;
+    height: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.elemento select {
+    width: 100px;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.botaoEnvio {
+    cursor: pointer;
+    border: solid #097253;
+    padding: 15px;
+    font-size: 15px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.botaoEnvio:hover {
+    border: none;
+    background-color:#097253;
+    color: #fff;
+    transition: .5s;
+}

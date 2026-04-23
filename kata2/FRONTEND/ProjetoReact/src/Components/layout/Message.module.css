@@ -1,0 +1,47 @@
+.quadro {
+    display: inline-flex;
+    flex-direction: column;
+    position: fixed;
+    right: 10%;
+    bottom: -15%;
+    padding: 18px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    transition: .2s;
+    max-width: 200px;
+    background-color: #646263;
+    border-color: #646263;
+    border-width: 2px;
+    border-style: groove;
+}
+
+.mensagem {
+    font-size: 16px;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.linhatimer {
+    background-color: #fff;
+    width: 200px;
+    height: 5px;
+    border-radius: 5px;
+}
+
+.mensagemShow {
+    bottom: 5%;
+}
+
+.sucesso {
+    background-color: #95d90dd0;
+}
+
+.erro {
+    background-color: #d90d0dc7;
+    color: #fff;
+    border-color: #fff;
+}
