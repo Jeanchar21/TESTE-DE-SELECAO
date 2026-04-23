@@ -1,0 +1,24 @@
+12. R= No processo de construção do pipeline, tomei algumas decisões importantes de tratamento para garantir que os dados fossem limpos. Decidi remover entregas 
+que não estavam associadas a pedidos válidos. Usei dropna(subset=['data_pedido']) após a junção dos dados de pedidos e entregas. Essa decisão visa garantir que as entregas sem
+um pedido correspondente não interferissem na análise. Como os arquivos de entrada tinham datas em formatos mistos (DD/MM/AAAA, AAAA-MM-DD, e timestamps), a solução que eu pensei
+foi tentar antes converter para o formato YYYY-MM-DD, usando pd.to_datetime(), e se ocorresse algum erro, eu tentaria o formato DD/MM/YYYY. Se ambas tentativas falhassem,
+a data retornaria NaT (Not a Time), facilitando a identificação e filtragem de registros inválidos. Os valores em dinheiro vinham com diferentes formatos, então substituí as vírgulas
+por pontos para padronizar e depois converter para float usando float(valor.replace(',', '.')). Caso o valor fosse inválido (não numérico), ele retornaria NaN. Como os nomes das cidades
+estavam com grafias inconsistentes, utilizei a função title() para capitalizar corretamente os nomes das cidades. Para calcular o atraso de entregas, decidi preencher o campo atraso_dias
+com 0 para entregas ainda não realizadas (não havia data_realizada), enquanto as entregas antecipadas com atraso negativo foram mantidas, o que permite saber se o pedido foi antecipado.
+
+13. R= Ele não é idempotente. Se os arquivos de entrada tiverem dados duplicados ou alterados depois da primeira execução, a segunda execução pode resultar em um arquivo diferente, porque
+os valores numéricos podem ser processador novamente e dados ausentes podem ser tratados de outro jeito; Durante a execução do pipeline, valores de atraso_dias podem ser recalculados com
+base na ordem de execução e nas alterações dos dados de entrada. Se as entregas forem adicionadas, removidas ou modificadas entre execuções, os resultados podem mudar. Processamento de
+arquivos novos ou alterados: Se novos registros forem adicionados, ou se o estado de um pedido ou entrega for alterado entre as execuções, o pipeline poderá gerar resultados diferentes,
+o que afeta a consistência entre as execuções.
+
+14. R= Se isso acontecesse, eu faria algumas otimizações como processamento paralelo, em que o pipeline pode ser otimizado para rodar em vários núcleos ou em paralelo.
+O pandas provocaria um gargalo de memória, usar ferramentas como Dask ou Modin, que são projetadas para escalar o processamento de dados em várias máquinas e CPUs seria melhor.
+Em vez de processar os arquivos completos a cada execução, seria interessante implementar um sistema de processamento incremental, onde apenas os dados novos ou alterados desde a última
+execução são processados. Isso pode ser feito com base em timestamps ou identificadores únicos.
+Para lidar com grandes volumes de dados, poderia-se ler os dados em pedaços menores (chunks). Usando o parâmetro chunksize do pandas, você pode carregar os dados em partes e processá-los
+iterativamente, sem precisar carregar tudo na memória de uma vez. Para dados de grande volume, a leitura e escrita contínua em arquivos CSV pode ser ineficiente. Uma alternativa seria migrar
+para um banco de dados relacional (como PostgreSQL, que tenho mais conhecimento) ou uma solução de data lake, como o AWS S3, para armazenar e consultar os dados de maneira mais eficiente.
+
+15. R= Testes de integridade de dados, testes de cálculo de atraso, testes de agregação e testes de performance.
