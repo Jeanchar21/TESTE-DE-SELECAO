@@ -11,6 +11,7 @@ Justificativa: Todas foram stacks aprendidas e fortemente aprimoradas durante me
 Instruções para executar cada kata localmente:
 kata1 - inicia o console normalmente no visual studio
 kata1 (testes) - Install-Package xunit
+kata2 (FRONT) - npm install
 kata2 (FRONT) - npm start
 kata2 (BACK) - inicia swagger normalmente
 kata4 - pip install -r requirements.txt
