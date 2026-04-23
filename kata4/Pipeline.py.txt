@@ -1,0 +1,68 @@
+import pandas as pd
+import numpy as np
+from datetime import datetime
+
+def normalizar_data(data):
+    if isinstance(data, str):
+        try:
+            # Tentando converter para o formato YYYY-MM-DD
+            return pd.to_datetime(data, errors='coerce', format='%Y-%m-%d')
+        except ValueError:
+            try:
+                # Tentando converter para o formato DD/MM/YYYY
+                return pd.to_datetime(data, errors='coerce', format='%d/%m/%Y')
+            except ValueError:
+                # Se falhar, retornamos 'NaT' (Not a Time)
+                return pd.NaT
+    return data
+
+def normalizar_cidade(cidade):
+    if isinstance(cidade, str):
+        return cidade.strip().title()
+    return cidade
+
+def tratar_valor(valor):
+    if isinstance(valor, str):
+        return float(valor.replace(',', '.'))  # Substitui vírgula por ponto e converte para float
+    return valor
+
+def gerar_relatorio_consolidado(pedidos_path, clientes_path, entregas_path, output_path):
+    # Leitura dos arquivos CSV
+    pedidos = pd.read_csv(pedidos_path)
+    clientes = pd.read_csv(clientes_path)
+    entregas = pd.read_csv(entregas_path)
+
+    pedidos['data_pedido'] = pedidos['data_pedido'].apply(normalizar_data)
+    entregas['data_prevista'] = entregas['data_prevista'].apply(normalizar_data)
+    entregas['data_realizada'] = entregas['data_realizada'].apply(normalizar_data)
+
+    pedidos['valor_total'] = pedidos['valor_total'].apply(tratar_valor)
+
+    clientes['cidade'] = clientes['cidade'].apply(normalizar_cidade)
+
+    df_consolidado = pd.merge(pedidos, clientes[['id_cliente', 'nome', 'cidade', 'estado']], on='id_cliente', how='left')
+
+    df_consolidado = pd.merge(df_consolidado, entregas[['id_pedido', 'data_prevista', 'data_realizada', 'status_entrega']], on='id_pedido', how='left')
+
+    df_consolidado = df_consolidado.dropna(subset=['data_pedido'])  # Eliminar registros sem id_pedido válido
+
+    df_consolidado['atraso_dias'] = (df_consolidado['data_realizada'] - df_consolidado['data_prevista']).dt.days
+
+    df_consolidado['atraso_dias'] = df_consolidado['atraso_dias'].fillna(0)  # Se ainda não foi entregue, atraso será 0
+
+    df_consolidado_final = df_consolidado[['id_pedido', 'nome', 'cidade', 'estado', 'valor_total', 'status_x',
+                                           'data_pedido', 'data_prevista', 'data_realizada', 'atraso_dias', 'status_entrega']]
+
+    df_consolidado_final.rename(columns={'nome': 'nome_cliente', 'cidade': 'cidade_normalizada', 'status_x': 'status_pedido'}, inplace=True)
+
+    df_consolidado_final.to_csv(output_path, index=False)
+
+    print(f"Relatório consolidado gerado em: {output_path}")
+
+# Chamada da função principal para gerar o relatório
+pedidos_path = 'pedidos.csv'
+clientes_path = 'clientes.csv'
+entregas_path = 'entregas.csv'
+output_path = 'relatorio_consolidado.csv'
+
+gerar_relatorio_consolidado(pedidos_path, clientes_path, entregas_path, output_path)

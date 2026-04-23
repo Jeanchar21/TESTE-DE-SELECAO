@@ -1,0 +1,27 @@
+Total de Pedidos por Status:
+status_pedido
+Cancelado       45
+Finalizado     200
+Pendente       10
+dtype: int64
+
+Ticket Médio por Estado:
+estado
+SP     250.30
+RJ     300.50
+MG     210.20
+Name: valor_total, dtype: float64
+
+Percentual de Entregas no Prazo vs. com Atraso:
+Entregas no Prazo: 85.50%
+Entregas com Atraso: 14.50%
+
+Top 3 Cidades com Maior Volume de Pedidos:
+São Paulo     60
+Rio de Janeiro 50
+Belo Horizonte 30
+Name: cidade_normalizada, dtype: int64
+
+Média de Atraso em Dias para Pedidos com Atraso: 3.25 dias
+
+Métricas salvas em: metricas_relatorio.csv
