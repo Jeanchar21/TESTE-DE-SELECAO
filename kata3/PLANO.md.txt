@@ -1,0 +1,52 @@
+------------------------------------------------Seção 1------------------------------------------------
+Problema 1: O endpoint de consulta de pedidos demora 8–12 segundos em horário de pico.
+ * O provável é que não há paginação ou tratamentos dos dados na listagem dos pedidos.
+ * Este problema pode ocasionar em uma demora adicional ao processo de produção e demais processos que necessitam dessa funcionalidade.
+ * Quadrante 1
+Problema 2: Dois pedidos foram criados em duplicidade na última semana.
+ * Provavelmente o botão de submissão do envio de post dos pedidos não está bloqueando durante o carregamento da primeira requisição
+permitindo que mais cliques ou interações provoquem mais requisições com os mesmos dados anteriormente inseridos.
+ * Isso pode sobrecarregar o servidor, ocupar espaço desnecessário em banco e confundir os usuários que atendem os pedidos listados (eles podem realizar o mesmo pedido duplicado se não notarem que foi replicado)
+consequentemente, dependendo do tipo de pedido, se for comida por exemplo, pode ocasionar desperdício de comida e perda de dinheiro.
+ * Quadrante 1
+Problema 3: Um bug de cálculo de frete foi corrigido em produção diretamente (sem PR, sem teste).
+ * Não há um tipo de organização no sistema de versionamento do software permitindo que o desenvolvedor.
+ * Isso dificulta o próprio processo de manutenção em si: Ao subir código de maneira desorganizada, fica mais difícil de encontrar qual ação de push foi responsável pela funcionalidade conflituosa (dificultando de voltar versão
+por exemplo).
+ * Quadrante 2
+Problema 4: O código da camada de negócio tem +4.000 linhas em um único arquivo.
+ * Não há modularização na camada de service, (isso se foi feito service, em alguns casos fazem a camada de negócios diretamente no repositório).
+ * Dificulta o processo de manutenção e implementação de novas funcionalidades: Sem modularidade, encontrar uma funcionalidade nativa pode se tornar um problema, impedindo o desenvolvedor de atualizá-la ou podendo até resultar no
+retrabalho de reconstruí-la e, agravando assim, ainda mais o problema em questão (aumentando novamente a quantidade de linhas).
+ * Quadrante 2
+Problema 5: Não há testes automatizados. Nenhum.
+ * Não foi pensado nem instruído sobre a necessidade da realização de testes à equipe.
+ * Sem testes as funções conflituosas não serão devidamente identificadas e serão incorretamente implementadas em produção.
+ * Quadrante 2
+
+------------------------------------------------Seção 2------------------------------------------------
+Problema 1:
+Identificar os dados necessários e os dados que não precisam estar dentro do agrupamento listado e implementar a paginação no GET do backend
+da API. Esforço de 3 dias. Critério: Quando a requisição de GET na listagem dos pedidos tiver um tempo de carregamento inferior a 2 segundos.
+Problema 2:
+Implementar um bloqueio (disable) no botão de submissão no envio do pedido durante o carregamento da primeira requisição. Esforço de 4 horas.
+Critério: Ao realizar duplo ou mais cliques seja enviado apenas um pedido ao painel.
+Problema 3:
+Buscar e aplicar uma funcionalidade sobre o sistema de versionamento (git, bitbucket ou azure) que estabeleça regras para o envio de commits e exija a realiza. Esforço de 5 dias.
+Critério: Quando, ao tentar realizar um push totalmente dos padrões definidos, a requisição for bloqueada.
+Problema 4:
+Realizar um processo de modularização do código extenso, mantendo o funcionamento da aplicação. Esforço de um mês. Critério a aplicação deve funcionar da mesma maneira como funcionava anteriormente e o código da camada
+de negócios deve apresentar menos de um terço do número de linhas que ela apresenta atualmente.
+Problema 5:
+Construir uma estrutura base para testes automatizados. Esforço de 3 semanas. Critério: Quando uma funcionalidade for devidamente testada e os resultados me forem apresentados.
+
+------------------------------------------------Seção 3------------------------------------------------
+Resposta:
+Eu escolheria a opção A. Se este já trata-se de um modelo de negócios consolidado e funcional, eu priorizaria evitar qualquer risco de regressão, pois isso provocaria um baita problema grave adicional à solução.
+Além disso, durante o processo de refatoração é possível que os desenvolvedores adquiram maior conhecimento sobre o código e realizem uma análise que posteriormente pode resultar em atualizações graduais e seguras que implicarão
+na limpeza do código, da mesma forma.
+------------------------------------------------Seção 4------------------------------------------------
+Resposta:
+Desempenho, comprometido principalmente pelo problema 1, tempo médio de resposta seria a métrica;
+Manutenibilidade, comprometido pelos problemas 3, 4 e 5, tempo médio demandado para manutenção das funcionalidades;
+Confiabilidade, comprometido pelo problema 2, verificação de porcentagem de itens duplicados como métrica;
