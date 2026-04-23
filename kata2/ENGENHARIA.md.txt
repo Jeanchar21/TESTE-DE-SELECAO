@@ -1,0 +1,13 @@
+9. R= Eu separei o backend nas camadas mais padrões. O repositório que é responsável pela persistência e acesso mais próximo ao banco.
+O service, onde é possível implementar as regras de negócio, bem como tratar dados complexos que resultam das respostas do repositório.
+O controller que é a camada de interface com o client, que determina como os dados serão recebidos e quais métodos do service devem ser inciados, além de ser a camada onde se constroem as URLs
+Também optei por usar interfaces entre o repositório e service para uma camada a mais em prol da melhoria na organização e manutenção do código, pois lista os métodos que de fato passarão de
+uma camada a outra, como uma boa prática. Os DTOs também são uma boa escolha de boas práticas e servem como um filtro seguro de quais informações serão enviadas para o client, evitando que
+dados importantes, mas desnecessários em um determinado contexto, sejam acessados, por exemplo.
+
+10. R= O uso de filtros de paginação e status no get junto com a organização das interfaces e o uso dos Data Transfer Objects (DTOs).
+
+11. R= Teria que implementar um framework de autenticação (nesse caso do C#, o Identity) e construir um baseController com métodos de login e autenticação.
+O método de login do baseController basicamente iria gerar um token que ficaria guardado na SessionStorage e seria a chave para acessar os demais métodos da API. Eu também construiria um
+sistema de contexto, com o rook useContext no React para que a ausência do token também bloqueasse as telas do usuário não desejado. A escolha do token poderia ser do tipo JWT para que dele
+possa extrair informações do usuário e usar nas telas da aplicação e comunicar que ele foi logado com sucesso.

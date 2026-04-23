@@ -1,0 +1,42 @@
+5. R= O usuário que vai demandar as atividades e o meio pelo qual ele registraria as mesmas;
+A real definição de gerenciamento, se ele seria por parte do próprio usuário apenas ou de toda uma hierarquia dentro de seu setor;
+O sistema de cargos da aplicação e o escopo de atividades que o usuário tem acesso;
+As informações presentes na tela de detalhamento da atividade;
+Todos os tipos de status que as atividades devem ter;
+Todos os níveis de prioridade que as atividades devem ter;
+
+6. R= Quem vai demandar as atividades? E por qual meio?
+(Na ausência de resposta eu acredito que é muito mais conveniente que o próprio requisitante criasse as tarefas encaminhadas diretamente ao atendente da demanda e que fosse permitido que o atendente repassasse a tarefa para outro
+colega caso percebesse que não estava dentro das suas capacidades concluí-la em determinado prazo. Caso o requisitante não tivesse um atendente específico para o qual enviar, por padrão seria enviado à liderança do setor para a triagem.
+Apesar disso, eu faria como entendo que no texto o requisitante deve se comunicar com o atendente e o próprio atendente registra as tarefas)
+O gerenciamento de tarefas também será usado como meio de monitorar e validar o rendimento do usuário nos projetos?
+(Na ausência de resposta eu consideraria que sim, tendo em vista o potencial da aplicação e o alto grau de utilidade dessa funcionalidade)
+O usuário deve ver apenas as próprias tarefas? Há algum sistema de roles/cargos na aplicação que permita um usuário ver além de suas tarefas (Gerente por exemplo)?
+(Na ausência de resposta eu consideraria que deveria haver um perfil de liderança com acesso às tarefas de todos, gerenciando e autorizando ou não aquilo que foi demandado e registrado)
+Além do título e a situação (creio que a descrição da tarefa) não seria interessante mostrar também o status, o nível de prioridade e o acréscimo do atributo prazo na visualização da tarefa?
+(Na ausência de resposta eu consideraria que todas essas informações básicas seriam necessárias e seria apenas questão de tempo até o cliente pedir a inclusão desses dados na tela)
+Quais seriam todos os status da atividade? Apenas pendente e concluída? Não há uma situação em que o status "Em andamento" poderia ser útil?
+(Na ausência de resposta, nesse caso, eu consideraria apenas os status que foram propostos, pois para incluir um secundário é apenas adição de um item ao enum e pode ser que para o usuário
+não importe tanto o que está em andamento tendo em vista que a maioria deles terá acesso às próprias atividades.)
+Quais os níveis de prioridade?
+(Na ausência de resposta eu consideraria apenas 3 padrões: ALTA, MÉDIA e BAIXA.)
+
+7. Requisitos Funcionais (RFs):
+RF1 - O usuário deve passar por um processo de login e autenticação do usuário antes de ter acesso à aplicação.
+RF2 - O requisitante deve conseguir entrar em contato com o atendente para dar início à própria demanda.
+RF3 - O usuário atendente das tarefas deve conseguir acessar uma lista com as prórpias tarefas, organizadas por título, status e prioridade.
+RF4 - O usuário atendente das tarefas deve conseguir acessar o detalhamento de cada uma de suas tarefas contendo título, status, prioridade e situação (descrição)
+RF5 - O usuário atendente também deve conseguir criar suas próprias tarefas.
+RF6 - O usuário atendente deve conseguir finalizar suas próprias tarefas.
+RF7 - O usuário atendente deve conseguir abrir uma requisição de deleção das suas próprias tarefas.
+RF8 - O usuário atendente deve conseguir definir qual o nível de prioridade das suas próprias tarefas.
+Requisitos Não Funcionais (RNFs):
+RNF1 - O sistema deve suportar um limite superior a 500 tarefas.
+RNF2 - Deve ser acessível via web.
+RNF3 - O cliente (FRONTEND) do sistema deve ser construído usando o framework React-JS.
+RNF4 - A parte de gerenciamento do servidor (BACKEND) deve ser uma API REST .NET.
+RNF5 - O sistema deve ser integrado com banco de dados postgres
+RNF6 - As senhas devem ser armazenadas criptografadas.
+
+8. Eu adiantaria a implentação de forma básica, totalmente maleável e adaptável, apenas para quando receber as informações necessárias, incluí-las rapidamente no molde construído,
+considerando que é uma certeza que a função será implementada, e que este é apenas um atributo simples incialmente, um grau diferente de status da atividade.
